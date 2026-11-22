@@ -255,4 +255,10 @@ body {
   .pagina { margin: 0; box-shadow: none; break-after: page; break-inside: avoid; }
   .pagina:last-child { break-after: auto; }
   .bloque.desbordado { outline: none; }
+
+  /* Sin sombras en el PDF: algunos visores e impresoras las dibujan como bloques negros. */
+  *{box-shadow:none !important; text-shadow:none !important;}
+
+  /* Un borde suave reemplaza la sobra para que las tarjetas no se pierdan en el blanco. */
+  .ficha, .dia, .mapa, .caja.azul .cuerpo, .mensaje-img{border:0.3mm solid #c3cad3;}
 }

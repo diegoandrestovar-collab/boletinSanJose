@@ -93,11 +93,13 @@
       tableCellControllerPosition: 'top',
       resizingBar: false,
       showPathLabel: false,
+      plugins: window.pluginEmoji ? [window.pluginEmoji] : [],
       buttonList: [
         ['undo', 'redo'],
         ['formatBlock', 'fontSize'],
         ['bold', 'italic', 'underline', 'strike'],
         ['fontColor', 'hiliteColor', 'removeFormat'],
+        ['emoji'],
         ['align', 'list', 'outdent', 'indent'],
         ['table', 'image', 'link', 'horizontalRule'],
         ['codeView']

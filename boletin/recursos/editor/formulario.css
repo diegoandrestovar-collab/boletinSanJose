@@ -101,7 +101,8 @@ table.lista td:last-child { width: 34px; }
 .tarjeta.apagada { opacity: .7; }
 
 /* ---------------------------------------------------------------- editor */
-.sun-editor { border-color: var(--borde) !important; border-radius: 6px; font-family: inherit; }
+.sun-editor {position: relative; z-index: 1; border-color: var(--borde) !important; border-radius: 6px; font-family: inherit; }
+.sun-editor:focus-within {z-index: 40;}
 .sun-editor .se-toolbar { outline: none; border-bottom: 1px solid var(--borde); border-radius: 6px 6px 0 0; background: #f7f9fc; }
 .sun-editor .se-wrapper { border-radius: 0 0 6px 6px; }
 .sun-editor-editable { font-family: Arial, Helvetica, sans-serif !important; font-size: 12pt !important; line-height: 1.28 !important; padding: 8px 12px !important; }
