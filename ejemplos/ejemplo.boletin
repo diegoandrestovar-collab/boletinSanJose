@@ -1,0 +1,189 @@
+{
+ "version": 1,
+ "pagina": {
+  "tamano": "oficio"
+ },
+ "institucion": {
+  "nombre": "Institución Educativa San José – Oporapa, Huila",
+  "telefono": "(57) 3147791126",
+  "direccion": "Calle 7 No. 9ª-34"
+ },
+ "semana": {
+  "inicio": "2026-11-16",
+  "fin": "2026-11-20",
+  "texto": ""
+ },
+ "mensaje": {
+  "mostrar": true,
+  "titulo": "Mensaje del Equipo Directivo",
+  "html": "<p>Estimada comunidad educativa: iniciamos la recta final del año escolar. Agradecemos el compromiso de estudiantes, padres de familia y docentes en cada una de las actividades programadas.</p><p><strong>¡Juntos construimos una mejor institución!</strong></p>",
+  "imagen": ""
+ },
+ "info": {
+  "mostrar": true,
+  "titulo": "Información Institucional",
+  "periodo": "4",
+  "inicio": "2026-09-14",
+  "fin": "2026-11-27",
+  "avance_auto": true,
+  "avance": 0,
+  "saber_mostrar": true,
+  "saber_titulo": "Prueba Saber 11",
+  "saber_fecha": "2027-08-08",
+  "saber_auto": true,
+  "saber_semanas": ""
+ },
+ "recomendaciones": {
+  "mostrar": true,
+  "titulo": "Recomendaciones",
+  "html": "<ul><li>La rotación por los diferentes salones implica el manejo disciplinario del tiempo, salir puntuales del salón y llegar en el menor tiempo posible a clase siguiente (<strong>menos de 3 minutos</strong>).</li><li>No están autorizadas las compras en la tienda escolar en los espacios de rotación de clase, ni en lugares diferentes a ellas.</li><li>Salidas al baño únicamente bajo autorización del docente de clase.</li><li>En el espacio del descanso no está permitida la permanencia de estudiantes al interior de los salones de clase y la parte baja de la institución.</li></ul>"
+ },
+ "acompanamiento": {
+  "mostrar": true,
+  "salto": true,
+  "titulo": "Acompañamiento",
+  "mostrar_mapa": true,
+  "mapa": "",
+  "docentes": [
+   {
+    "nombre": "ADA UBIELLY VALENCIA CELIS",
+    "zona": "1"
+   },
+   {
+    "nombre": "ÁLVARO PEÑA CASTRO",
+    "zona": "2"
+   },
+   {
+    "nombre": "ALVENIS TRUJILLO COLLO",
+    "zona": "3"
+   },
+   {
+    "nombre": "AMÉLIDA PEÑARANDA AGUIRRE",
+    "zona": "4"
+   },
+   {
+    "nombre": "CAROLINA LÓPEZ VARGAS",
+    "zona": "5"
+   },
+   {
+    "nombre": "DIEGO ANDRÉS TOVAR CARDOZO",
+    "zona": "6"
+   },
+   {
+    "nombre": "HERMAN FERNANDO PEÑA RAMIREZ",
+    "zona": "7"
+   },
+   {
+    "nombre": "JAIME ANDRÉS ROBLES LUQUE",
+    "zona": "8"
+   },
+   {
+    "nombre": "JHON STEVEEN CUSCUE SILVA",
+    "zona": "9"
+   },
+   {
+    "nombre": "JHONNATHAN DANIEL BELTRAN GALINDO",
+    "zona": "10"
+   },
+   {
+    "nombre": "JOSÉ ROGER EMBUS SALAZAR",
+    "zona": "11"
+   },
+   {
+    "nombre": "JUAN CARLOS LOPEZ REYES",
+    "zona": "12"
+   },
+   {
+    "nombre": "JUAN CARLOS MEJÍA RODRÍGUEZ",
+    "zona": "13"
+   },
+   {
+    "nombre": "JUAN MANUEL BRAVO CABRERA",
+    "zona": "14"
+   },
+   {
+    "nombre": "LINA MARIA ÁNGEL GONZÁLEZ",
+    "zona": "15"
+   },
+   {
+    "nombre": "LINA MARITZA MONCAYO BETANCURT",
+    "zona": "16"
+   },
+   {
+    "nombre": "MARTHA GRILLO VARGAS",
+    "zona": "17"
+   },
+   {
+    "nombre": "NURY CONSTANZA PEÑA RAMIREZ",
+    "zona": "18"
+   },
+   {
+    "nombre": "OSCAR JAVIER ARCINIEGAS RAMIREZ",
+    "zona": "19"
+   },
+   {
+    "nombre": "PAOLA ANDREA CASTAÑEDA BERMEO",
+    "zona": "20"
+   },
+   {
+    "nombre": "ROBINSON TRUJILLO RODRÍGUEZ",
+    "zona": "21"
+   },
+   {
+    "nombre": "SHEYLA STEFANIA HENAO MORENO",
+    "zona": "22"
+   },
+   {
+    "nombre": "YEFRY ALEXANDER MARTÍNEZ",
+    "zona": "23"
+   },
+   {
+    "nombre": "YENIRETH CORTÉS CORTÉS",
+    "zona": "1"
+   },
+   {
+    "nombre": "YUBELY SANCHEZ ORTIZ",
+    "zona": "2"
+   }
+  ],
+  "notas_html": "<ul><li>En los espacios del descanso en los que haya encuentros deportivos producto del campeonato intercursos, los docentes ubicados en las zonas 20 y 23 intercambiarán zonas de acompañamiento con los docentes Roger Embus y Nury Peña.</li><li>Los estudiantes que requieran tomar medicamentos por razones de salud dentro de la institución educativa deberán tener la autorización por escrito de sus padres.</li><li>En el espacio del descanso no está permitida la permanencia de estudiantes al interior de los salones de clase y la parte baja de la institución.</li></ul>"
+ },
+ "agenda": {
+  "salto": true,
+  "titulo": "Agenda de la Semana",
+  "mostrar_fechas": false,
+  "dias": [
+   {
+    "nombre": "Lunes",
+    "mostrar": true,
+    "html": "<p><strong>7:00 a.m.</strong> Izada de bandera a cargo del grado 9°.</p><ul><li>Reunión de área de Tecnología e Informática (12:30 p.m.).</li><li>Entrega de planes de mejoramiento.</li></ul>"
+   },
+   {
+    "nombre": "Martes",
+    "mostrar": true,
+    "html": "<p>Jornada pedagógica.</p><table><thead><tr><th>Hora</th><th>Actividad</th><th>Responsable</th></tr></thead><tbody><tr><td>7:00</td><td>Actividad número 1 de la jornada</td><td>Docente 1</td></tr><tr><td>8:00</td><td>Actividad número 2 de la jornada</td><td>Docente 2</td></tr><tr><td>9:00</td><td>Actividad número 3 de la jornada</td><td>Docente 3</td></tr><tr><td>10:00</td><td>Actividad número 4 de la jornada</td><td>Docente 4</td></tr><tr><td>11:00</td><td>Actividad número 5 de la jornada</td><td>Docente 5</td></tr><tr><td>12:00</td><td>Actividad número 6 de la jornada</td><td>Docente 6</td></tr></tbody></table>"
+   },
+   {
+    "nombre": "Miércoles",
+    "mostrar": true,
+    "html": "<ol><li>Punto 1 de la agenda del miércoles con un texto suficientemente largo para ocupar más de un renglón dentro de la tarjeta y forzar el salto de hoja.</li><li>Punto 2 de la agenda del miércoles con un texto suficientemente largo para ocupar más de un renglón dentro de la tarjeta y forzar el salto de hoja.</li><li>Punto 3 de la agenda del miércoles con un texto suficientemente largo para ocupar más de un renglón dentro de la tarjeta y forzar el salto de hoja.</li><li>Punto 4 de la agenda del miércoles con un texto suficientemente largo para ocupar más de un renglón dentro de la tarjeta y forzar el salto de hoja.</li><li>Punto 5 de la agenda del miércoles con un texto suficientemente largo para ocupar más de un renglón dentro de la tarjeta y forzar el salto de hoja.</li><li>Punto 6 de la agenda del miércoles con un texto suficientemente largo para ocupar más de un renglón dentro de la tarjeta y forzar el salto de hoja.</li><li>Punto 7 de la agenda del miércoles con un texto suficientemente largo para ocupar más de un renglón dentro de la tarjeta y forzar el salto de hoja.</li><li>Punto 8 de la agenda del miércoles con un texto suficientemente largo para ocupar más de un renglón dentro de la tarjeta y forzar el salto de hoja.</li><li>Punto 9 de la agenda del miércoles con un texto suficientemente largo para ocupar más de un renglón dentro de la tarjeta y forzar el salto de hoja.</li><li>Punto 10 de la agenda del miércoles con un texto suficientemente largo para ocupar más de un renglón dentro de la tarjeta y forzar el salto de hoja.</li><li>Punto 11 de la agenda del miércoles con un texto suficientemente largo para ocupar más de un renglón dentro de la tarjeta y forzar el salto de hoja.</li><li>Punto 12 de la agenda del miércoles con un texto suficientemente largo para ocupar más de un renglón dentro de la tarjeta y forzar el salto de hoja.</li><li>Punto 13 de la agenda del miércoles con un texto suficientemente largo para ocupar más de un renglón dentro de la tarjeta y forzar el salto de hoja.</li><li>Punto 14 de la agenda del miércoles con un texto suficientemente largo para ocupar más de un renglón dentro de la tarjeta y forzar el salto de hoja.</li><li>Punto 15 de la agenda del miércoles con un texto suficientemente largo para ocupar más de un renglón dentro de la tarjeta y forzar el salto de hoja.</li><li>Punto 16 de la agenda del miércoles con un texto suficientemente largo para ocupar más de un renglón dentro de la tarjeta y forzar el salto de hoja.</li><li>Punto 17 de la agenda del miércoles con un texto suficientemente largo para ocupar más de un renglón dentro de la tarjeta y forzar el salto de hoja.</li><li>Punto 18 de la agenda del miércoles con un texto suficientemente largo para ocupar más de un renglón dentro de la tarjeta y forzar el salto de hoja.</li><li>Punto 19 de la agenda del miércoles con un texto suficientemente largo para ocupar más de un renglón dentro de la tarjeta y forzar el salto de hoja.</li><li>Punto 20 de la agenda del miércoles con un texto suficientemente largo para ocupar más de un renglón dentro de la tarjeta y forzar el salto de hoja.</li><li>Punto 21 de la agenda del miércoles con un texto suficientemente largo para ocupar más de un renglón dentro de la tarjeta y forzar el salto de hoja.</li><li>Punto 22 de la agenda del miércoles con un texto suficientemente largo para ocupar más de un renglón dentro de la tarjeta y forzar el salto de hoja.</li></ol>"
+   },
+   {
+    "nombre": "Jueves",
+    "mostrar": true,
+    "html": "<p>Comité de convivencia escolar, 10:00 a.m. en la biblioteca.</p>"
+   },
+   {
+    "nombre": "Viernes",
+    "mostrar": true,
+    "html": ""
+   },
+   {
+    "nombre": "Sábado",
+    "mostrar": false,
+    "html": ""
+   }
+  ]
+ },
+ "extras": []
+}

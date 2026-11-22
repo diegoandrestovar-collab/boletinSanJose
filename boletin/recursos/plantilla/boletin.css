@@ -1,0 +1,258 @@
+/* ==========================================================================
+   Boletín Institucional – estilos del documento
+   Las medidas están en mm/pt para que la vista previa sea idéntica al PDF.
+   ========================================================================== */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: Arial, "Liberation Sans", Helvetica, sans-serif;
+  font-size: 12pt;
+  line-height: 1.28;
+  color: #000;
+  background: #5b6470;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+#fuente { display: none; }
+
+/* ------------------------------------------------------------------ hoja */
+#paginas { padding: 6mm 0; }
+.pagina {
+  position: relative;
+  width: var(--pw);
+  height: var(--ph);
+  margin: 0 auto 6mm;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 1mm 4mm rgba(0, 0, 0, .45);
+  --h-enc: calc(var(--pw) * 0.2471);
+  --h-pie: calc(var(--pw) * 0.1194);
+}
+.pagina.portada { --h-enc: calc(var(--pw) * 0.4047); }
+
+.encabezado { position: absolute; top: 0; left: 0; width: 100%; height: var(--h-enc); }
+.encabezado img, .pie img { display: block; width: 100%; height: 100%; }
+
+.semana {
+  position: absolute;
+  left: 31.5%; right: 26.5%;
+  top: 80.6%; height: 8.6%;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  font-family: "Poppins", Arial, sans-serif;
+  font-weight: 800;
+  font-size: 14pt;
+  white-space: nowrap;
+}
+
+.pie {
+  position: absolute; bottom: 0; left: 0; width: 100%; height: var(--h-pie);
+  color: #fff; font-size: 10pt; line-height: 1;
+}
+.pie > div { position: absolute; white-space: nowrap; }
+.pie-nombre { left: 0; right: 0; top: 55%; text-align: center; padding-right: 0.6%; }
+.pie-tel { left: 35.2%; top: 74%; }
+.pie-dir { left: 52.9%; top: 74%; }
+.pie .num { right: 3.4%; top: 64%; font-weight: bold; font-size: 12pt; }
+
+/* Zona útil entre encabezado y pie. paginar.js reparte aquí los bloques. */
+.area {
+  position: absolute;
+  top: calc(var(--h-enc) + 1mm);
+  bottom: calc(var(--h-pie) - 3mm);
+  left: 12mm; right: 12mm;
+}
+.bloque { margin: 0 0 6mm; }
+.bloque.desbordado { outline: 0.6mm dashed #d00000; }
+
+/* ------------------------------------------------------------------ títulos de sección */
+.titulo-seccion { display: flex; align-items: center; margin: 2mm 0 6mm; }
+.titulo-seccion span {
+  min-width: 82mm; max-width: 80%;
+  padding: 3.4mm 9mm;
+  background: #f29f05; color: #fff;
+  font-weight: bold; font-size: 16pt; text-align: center;
+  border-radius: 7mm 0 7mm 0;
+}
+.titulo-seccion::after {
+  content: ""; flex: 1; height: 1.1mm; margin-top: -3mm;
+  background: linear-gradient(90deg, #47d158, #1b7224);
+}
+
+/* ------------------------------------------------------------------ mensaje del equipo directivo */
+.mensaje {
+  margin-top: 3mm;
+  padding: 2mm 6mm 6mm 5mm;
+  background: #fff;
+  border: 0.5mm solid #a6a6a6;
+  border-radius: 9mm;
+  box-shadow: 0 1.2mm 1.2mm rgba(0, 0, 0, .35);
+}
+.mensaje-cab { display: flex; align-items: center; gap: 3mm; margin-bottom: 1.5mm; }
+.mensaje-cab h2 { margin: 0; font-size: 16pt; color: #005390; }
+.mensaje-cab i { flex: 1; height: 1.1mm; background: linear-gradient(90deg, #f38009, #efad10); }
+.mensaje-cuerpo { display: grid; grid-template-columns: 1fr; align-items: stretch; }
+.mensaje-cuerpo.con-imagen { grid-template-columns: 1fr 36%; }
+.mensaje-texto {
+  position: relative;
+  min-height: 34mm;
+  padding: 2mm 3mm 4mm;
+  background: #e5e5e5;
+  overflow: hidden;
+}
+.con-imagen .mensaje-texto { padding-right: 9mm; }
+.comillas {
+  position: absolute; right: 2mm; bottom: -17mm;
+  font-family: Georgia, "Times New Roman", serif; font-size: 96pt; line-height: 1;
+  color: #b7d2bf; pointer-events: none; z-index: 0;
+}
+.con-imagen .comillas { right: 6mm; }
+.mensaje-texto > :not(.comillas) { position: relative; z-index: 1; }
+.mensaje-img {
+  align-self: center;
+  margin: 0 -2mm 0 -6mm;
+  position: relative; z-index: 2;
+  padding: 2mm;
+  background: #fff;
+  border-radius: 7mm;
+  box-shadow: 0 1mm 3mm rgba(0, 0, 0, .4);
+}
+.mensaje-img img {
+  display: block; width: 100%; max-height: 70mm; object-fit: cover; border-radius: 5.5mm;
+}
+
+/* ------------------------------------------------------------------ fichas de información */
+.info { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; margin-left: 2mm; margin-right: 2mm; }
+.info.una { grid-template-columns: 1fr; }
+.ficha {
+  border-radius: 3mm 0 5mm 5mm;
+  background: #fff;
+  box-shadow: 0 1mm 1.5mm rgba(0, 0, 0, .4);
+  display: flex; flex-direction: column;
+}
+.ficha-cab, .dia-cab { display: flex; align-items: center; min-height: 10mm; }
+.tab {
+  flex: none; width: 14mm; height: 10mm;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 3mm 0 3.5mm 0;
+  background: var(--tab);
+}
+.tab svg { width: 7.5mm; height: 7.5mm; }
+.ficha-cab h3 { margin: 0 3mm; font-size: 14pt; color: var(--titulo); }
+.ficha-cuerpo {
+  flex: 1;
+  display: flex; align-items: center; gap: 3mm;
+  padding: 3mm 4mm 4mm 5mm;
+  background: var(--fondo);
+  border-radius: 0 0 5mm 5mm;
+}
+.ficha.azul { --tab: #215e9a; --titulo: #153d63; --fondo: #dbe8f6; }
+.ficha.verde { --tab: #1a7224; --titulo: #124f1a; --fondo: #e6f6e1; }
+.ficha-icono { flex: none; width: 13mm; height: auto; }
+
+.avance { flex: 1; min-width: 0; }
+.avance-rotulo, .saber-rotulo { font-weight: bold; }
+.avance-pista { position: relative; padding-top: 8.5mm; margin-top: -4.5mm; }
+.avance-globo {
+  position: absolute; top: 0; left: var(--p);
+  transform: translateX(-100%);
+  min-width: 14mm; height: 8.6mm; padding: 0 2mm;
+  display: flex; align-items: center; justify-content: center;
+  background: #215e9a; color: #fff; font-weight: bold; font-size: 18pt;
+  border-radius: 2mm 2mm 0 0;
+}
+.avance-globo.izq { left: 0; transform: none; }
+.avance-pista.suelta { margin-top: 0.5mm; }
+.avance-barra { height: 2.8mm; background: #fff; border-radius: 1.4mm; overflow: hidden; box-shadow: 0 0.3mm 0.6mm rgba(0,0,0,.25); }
+.avance-barra > div { height: 100%; background: #215e9a; }
+.avance-fin { margin-top: 2mm; font-weight: bold; }
+.avance-fin b { color: #005390; }
+
+.saber { flex: 1; }
+.saber-cuenta { margin-top: 1.5mm; text-align: right; padding-right: 4mm; }
+.saber-cuenta b { font-size: 20pt; color: #1b7325; vertical-align: -1mm; }
+
+/* ------------------------------------------------------------------ cajas de texto */
+.caja { margin-left: 1mm; margin-right: 0; }
+.caja .cuerpo { padding: 5mm 8mm 5mm 6mm; }
+.caja.gris .cuerpo {
+  background: #f2f2f2;
+  border: 0.3mm solid #e4e4e4;
+  border-radius: 6mm 0 6mm 0;
+}
+.caja.azul .cuerpo {
+  background: #dbe9f6;
+  border-radius: 8mm 0 8mm 0;
+  box-shadow: 0.6mm 1mm 1.2mm rgba(0, 0, 0, .4);
+}
+
+/* ------------------------------------------------------------------ acompañamiento */
+.mapa { margin: 0 1mm 4mm; box-shadow: 1mm 1.5mm 3mm rgba(0, 0, 0, .45); }
+.mapa img { display: block; width: 100%; max-height: 120mm; object-fit: contain; background: #fff; }
+
+.docentes { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; align-items: start; margin: 0 2mm 6mm; }
+.docentes table { width: 100%; border-collapse: collapse; font-size: 11pt; }
+.docentes th { font-size: 12pt; padding: 0.4mm 2mm; border-bottom: 0.3mm solid #7f7f7f; }
+.docentes td { padding: 0.75mm 2mm; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 0; }
+.docentes th:first-child, .docentes td:first-child { width: 86%; }
+.docentes td:last-child { text-align: center; border-left: 0.3mm solid #7f7f7f; font-weight: bold; }
+.docentes tbody tr:nth-child(odd) { background: #f2f2f2; }
+
+/* ------------------------------------------------------------------ agenda: tarjetas de los días */
+.dia {
+  margin: 0 2mm 9mm;
+  background: #fff;
+  border-radius: 3mm 0 9mm 9mm;
+  box-shadow: 0 1.2mm 1.2mm rgba(0, 0, 0, .4);
+}
+.dia-cab h3 {
+  flex: 1; margin: 0 14mm 0 0;
+  text-align: center; font-size: 16pt; color: var(--titulo);
+}
+.dia-cab h3 small { font-size: 10pt; font-weight: normal; font-style: italic; }
+.dia .cuerpo {
+  min-height: 16mm;
+  padding: 2.5mm 6mm 5mm;
+  background: var(--fondo);
+  border-radius: 0 0 9mm 9mm;
+}
+.dia .cuerpo.sin-texto { min-height: 34mm; }
+/* Una tarjeta que continúa en la hoja siguiente no cierra con esquinas redondeadas. */
+.cortado, .cortado .cuerpo { border-bottom-left-radius: 0 !important; border-bottom-right-radius: 0 !important; }
+
+/* ------------------------------------------------------------------ texto enriquecido (salida del editor) */
+.rico { overflow-wrap: break-word; }
+.cuerpo { display: flow-root; }
+.rico p, .rico div { margin: 0; }
+.rico p { margin-bottom: 1.6mm; }
+.rico > :last-child { margin-bottom: 0; }
+.rico h1, .rico h2, .rico h3, .rico h4 { margin: 1mm 0 1.6mm; line-height: 1.2; }
+.rico h1 { font-size: 18pt; } .rico h2 { font-size: 16pt; } .rico h3 { font-size: 14pt; } .rico h4 { font-size: 12pt; }
+.rico ul, .rico ol { margin: 0 0 1.6mm; padding-left: 8mm; }
+.rico li { margin-bottom: 0.5mm; }
+.rico blockquote { margin: 0 0 1.6mm; padding: 1mm 4mm; border-left: 1mm solid rgba(0,0,0,.25); }
+.rico hr { border: 0; border-top: 0.4mm solid rgba(0,0,0,.35); margin: 2mm 0; }
+.rico a { color: #0b4f9e; }
+.rico img { max-width: 100%; height: auto; max-height: 150mm; }
+.rico figure { margin: 0; max-width: 100%; }
+.rico figure img { display: block; }
+.rico figcaption { font-size: 10pt; text-align: center; padding: 1mm 0; }
+.rico .se-component { margin: 1mm 0 2mm; max-width: 100%; }
+.rico .__se__float-left { float: left; margin-right: 4mm; }
+.rico .__se__float-right { float: right; margin-left: 4mm; }
+.rico .__se__float-center figure, .rico .__se__float-center { margin-left: auto; margin-right: auto; }
+.rico .__se__float-none figure { margin-left: 0; }
+.rico table { width: 100%; border-collapse: collapse; margin: 1mm 0 2mm; background: rgba(255,255,255,.75); table-layout: auto; }
+.rico th, .rico td { border: 0.3mm solid #5f6b76; padding: 1mm 2mm; vertical-align: top; text-align: left; }
+.rico th { background: rgba(0, 0, 0, .1); font-weight: bold; }
+.rico td p, .rico th p, .rico td div { margin: 0; }
+
+/* ------------------------------------------------------------------ impresión / PDF */
+@media print {
+  body { background: #fff; }
+  #paginas { padding: 0; }
+  .pagina { margin: 0; box-shadow: none; break-after: page; break-inside: avoid; }
+  .pagina:last-child { break-after: auto; }
+  .bloque.desbordado { outline: none; }
+}

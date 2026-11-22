@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Boletín Institucional – {{ texto_semana }}</title>
+<style>
+@font-face { font-family: "Poppins"; font-weight: 600; src: url("{{ recurso('fuentes/poppins-latin-600-normal.woff2') }}") format("woff2"); }
+@font-face { font-family: "Poppins"; font-weight: 700; src: url("{{ recurso('fuentes/poppins-latin-700-normal.woff2') }}") format("woff2"); }
+@font-face { font-family: "Poppins"; font-weight: 800; src: url("{{ recurso('fuentes/poppins-latin-800-normal.woff2') }}") format("woff2"); }
+:root { --pw: {{ ancho }}mm; --ph: {{ alto }}mm; }
+@page { size: {{ ancho }}mm {{ alto }}mm; margin: 0; }
+{{ css }}
+</style>
+</head>
+<body>
+
+{# ------------------------------------------------------------------ piezas que se repiten en cada hoja #}
+<template id="tpl-portada">
+  <header class="encabezado portada">
+    <img src="{{ recurso('img/encabezado_portada.jpg') }}" alt="">
+    <div class="semana"><span id="texto-semana">{{ texto_semana }}</span></div>
+  </header>
+</template>
+
+<template id="tpl-encabezado">
+  <header class="encabezado">
+    <img src="{{ recurso('img/encabezado.jpg') }}" alt="">
+  </header>
+</template>
+
+<template id="tpl-pie">
+  <footer class="pie">
+    <img src="{{ recurso('img/pie.jpg') }}" alt="">
+    <div class="pie-nombre">{{ d.institucion.nombre }}</div>
+    <div class="pie-tel">{{ d.institucion.telefono }}</div>
+    <div class="pie-dir">{{ d.institucion.direccion }}</div>
+    <div class="num"></div>
+  </footer>
+</template>
+
+{% macro icono_calendario() %}
+<svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M27 14V8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h9"/>
+  <path d="M4 11h23M10 3.5v5M21 3.5v5"/>
+  <path d="M8.5 15h2M13 15h2M17.5 15h2M8.5 19h2M13 19h2M8.5 23h2" stroke-width="2.4"/>
+  <circle cx="23.5" cy="23.5" r="5.5"/><path d="M23.5 20.5v3.2l2 1.3"/>
+</svg>
+{% endmacro %}
+
+{% macro icono_pin() %}
+<svg viewBox="0 0 32 32" aria-hidden="true">
+  <path fill="#fff" fill-rule="evenodd" d="M16 4c-5 0-9 3.9-9 8.8 0 6.300 9 15.200 9 15.200s9-8.900 9-15.200C25 7.900 21 4 16 4zm0 12.300a3.500 3.500 0 1 1 0-7 3.500 3.500 0 0 1 0 7z"/>
+  <circle cx="16" cy="12.800" r="1.900" fill="none" stroke="#fff" stroke-width="1.200"/>
+</svg>
+{% endmacro %}
+
+{% macro titulo(texto, salto=false) %}
+<div class="bloque titulo-seccion" data-con-siguiente{% if salto %} data-salto{% endif %}><span>{{ texto }}</span></div>
+{% endmacro %}
+
+{# ------------------------------------------------------------------ contenido en flujo (lo reparte paginar.js) #}
+<main id="fuente">
+
+{% if d.mensaje.mostrar %}
+<section class="bloque mensaje">
+  <div class="mensaje-cab"><h2>{{ d.mensaje.titulo }}</h2><i></i></div>
+  <div class="mensaje-cuerpo{% if d.mensaje.imagen %} con-imagen{% endif %}">
+    <div class="mensaje-texto rico">{{ mensaje_html }}<span class="comillas">”</span></div>
+    {% if d.mensaje.imagen %}
+    <div class="mensaje-img"><img src="{{ d.mensaje.imagen }}" alt=""></div>
+    {% endif %}
+  </div>
+</section>
+{% endif %}
+
+{% if d.info.mostrar %}
+{{ titulo(d.info.titulo) }}
+<section class="bloque info{% if not d.info.saber_mostrar %} una{% endif %}">
+  <div class="ficha azul">
+    <div class="ficha-cab"><div class="tab">{{ icono_pin() }}</div><h3>Periodo {{ d.info.periodo }}</h3></div>
+    <div class="ficha-cuerpo">
+      <img class="ficha-icono" src="{{ recurso('img/corredor.png') }}" alt="">
+      <div class="avance">
+        <div class="avance-rotulo">Avance del Periodo:</div>
+        <div class="avance-pista{% if avance < 82 %} suelta{% endif %}">
+          <div class="avance-globo{% if avance < 24 %} izq{% endif %}" style="--p: {{ avance }}%">{{ avance }}%</div>
+          <div class="avance-barra"><div style="width: {{ avance }}%"></div></div>
+        </div>
+        {% if finaliza %}<div class="avance-fin">Finaliza: <b>{{ finaliza }}</b></div>{% endif %}
+      </div>
+    </div>
+  </div>
+  {% if d.info.saber_mostrar %}
+  <div class="ficha verde">
+    <div class="ficha-cab"><div class="tab">{{ icono_calendario() }}</div><h3>{{ d.info.saber_titulo }}</h3></div>
+    <div class="ficha-cuerpo">
+      <img class="ficha-icono" src="{{ recurso('img/birrete.png') }}" alt="">
+      <div class="saber">
+        <div class="saber-rotulo">{{ d.info.saber_titulo }}:</div>
+        <div class="saber-cuenta">{{ saber.antes }} <b>{{ saber.numero }}</b> {{ saber.despues }}</div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</section>
+{% endif %}
+
+{% if d.recomendaciones.mostrar %}
+{{ titulo(d.recomendaciones.titulo) }}
+<section class="bloque caja gris divisible">
+  <div class="cuerpo rico">{{ recomendaciones_html }}</div>
+</section>
+{% endif %}
+
+{% if d.acompanamiento.mostrar %}
+{{ titulo(d.acompanamiento.titulo, d.acompanamiento.salto) }}
+{% if d.acompanamiento.mostrar_mapa %}
+<figure class="bloque mapa"><img src="{{ mapa }}" alt="Mapa de zonas de acompañamiento"></figure>
+{% endif %}
+{% if docentes_izq %}
+<section class="bloque docentes">
+  {% for columna in (docentes_izq, docentes_der) %}
+  <table>
+    <thead><tr><th>Docente</th><th>Sec</th></tr></thead>
+    <tbody>
+      {% for doc in columna %}
+      <tr><td>{{ doc.nombre }}</td><td>{{ doc.zona }}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endfor %}
+</section>
+{% endif %}
+{% if not notas_vacias %}
+<section class="bloque caja azul divisible">
+  <div class="cuerpo rico">{{ notas_html }}</div>
+</section>
+{% endif %}
+{% endif %}
+
+{% if dias %}
+{{ titulo(d.agenda.titulo, d.agenda.salto) }}
+{% for dia in dias %}
+<section class="bloque dia divisible" style="--fondo: {{ dia.color.fondo }}; --titulo: {{ dia.color.titulo }}; --tab: {{ dia.color.tab }}">
+  <div class="dia-cab"><div class="tab">{{ icono_calendario() }}</div><h3>{{ dia.titulo }}</h3></div>
+  <div class="cuerpo rico{% if dia.vacio %} sin-texto{% endif %}">{{ dia.html }}</div>
+</section>
+{% endfor %}
+{% endif %}
+
+{% for extra in extras %}
+{{ titulo(extra.titulo or 'Información adicional', extra.salto) }}
+<section class="bloque caja gris divisible">
+  <div class="cuerpo rico">{{ extra.html }}</div>
+</section>
+{% endfor %}
+
+</main>
+
+<div id="paginas"></div>
+
+<script>
+{{ js }}
+</script>
+</body>
+</html>

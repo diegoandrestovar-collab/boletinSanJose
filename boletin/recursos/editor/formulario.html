@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Formulario del boletín</title>
+<link rel="stylesheet" href="suneditor.min.css">
+<link rel="stylesheet" href="formulario.css">
+</head>
+<body>
+
+<nav id="pestanas">
+  <button data-panel="general" class="activa">General</button>
+  <button data-panel="mensaje">Mensaje</button>
+  <button data-panel="info">Información</button>
+  <button data-panel="recomendaciones">Recomendaciones</button>
+  <button data-panel="acompanamiento">Acompañamiento</button>
+  <button data-panel="agenda">Agenda</button>
+  <button data-panel="extras">Extras</button>
+</nav>
+
+<main>
+
+<!-- ============================================================ GENERAL -->
+<section class="panel activa" id="panel-general">
+  <h2>Semana del boletín</h2>
+  <div class="fila">
+    <label>Desde <input type="date" data-campo="semana.inicio"></label>
+    <label>Hasta <input type="date" data-campo="semana.fin"></label>
+  </div>
+  <label>Texto de la franja verde
+    <input type="text" data-campo="semana.texto" placeholder="Automático: «Semana del 16 al 20 de noviembre»">
+    <small>Déjelo vacío para que se escriba solo a partir de las fechas.</small>
+  </label>
+
+  <h2>Hoja</h2>
+  <label>Tamaño
+    <select data-campo="pagina.tamano">
+      <option value="oficio">Oficio 21,6 × 35,6 cm (8,5 × 14 pulg.) – plantilla original</option>
+      <option value="oficio33">Oficio 21,6 × 33 cm (8,5 × 13 pulg.)</option>
+      <option value="carta">Carta 21,6 × 27,9 cm</option>
+    </select>
+  </label>
+
+  <h2>Pie de página</h2>
+  <label>Institución <input type="text" data-campo="institucion.nombre"></label>
+  <div class="fila">
+    <label>Teléfono <input type="text" data-campo="institucion.telefono"></label>
+    <label>Dirección <input type="text" data-campo="institucion.direccion"></label>
+  </div>
+</section>
+
+<!-- ============================================================ MENSAJE -->
+<section class="panel" id="panel-mensaje">
+  <label class="interruptor"><input type="checkbox" data-campo="mensaje.mostrar"> Incluir esta sección</label>
+  <label>Título <input type="text" data-campo="mensaje.titulo"></label>
+  <h2>Mensaje</h2>
+  <textarea data-rico="mensaje.html"></textarea>
+  <h2>Imagen (opcional)</h2>
+  <div class="imagen" data-imagen="mensaje.imagen">
+    <div class="imagen-vista">Sin imagen</div>
+    <div class="imagen-botones">
+      <button type="button" class="elegir">Elegir imagen…</button>
+      <button type="button" class="quitar secundario">Quitar</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ INFORMACIÓN -->
+<section class="panel" id="panel-info">
+  <label class="interruptor"><input type="checkbox" data-campo="info.mostrar"> Incluir esta sección</label>
+  <label>Título <input type="text" data-campo="info.titulo"></label>
+
+  <h2>Periodo académico</h2>
+  <label>Periodo <input type="text" data-campo="info.periodo" class="corto"></label>
+  <div class="fila">
+    <label>Inicia <input type="date" data-campo="info.inicio"></label>
+    <label>Finaliza <input type="date" data-campo="info.fin"></label>
+  </div>
+  <label class="interruptor"><input type="checkbox" data-campo="info.avance_auto"> Calcular el avance con las fechas</label>
+  <label data-visible-si-no="info.avance_auto">Avance (%)
+    <input type="number" min="0" max="100" data-campo="info.avance" class="corto">
+  </label>
+
+  <h2>Cuenta regresiva</h2>
+  <label class="interruptor"><input type="checkbox" data-campo="info.saber_mostrar"> Mostrar esta tarjeta</label>
+  <label>Nombre <input type="text" data-campo="info.saber_titulo"></label>
+  <label>Fecha de la prueba <input type="date" data-campo="info.saber_fecha"></label>
+  <label class="interruptor"><input type="checkbox" data-campo="info.saber_auto"> Calcular las semanas que faltan</label>
+  <label data-visible-si-no="info.saber_auto">Semanas que faltan
+    <input type="text" data-campo="info.saber_semanas" class="corto">
+  </label>
+</section>
+
+<!-- ============================================================ RECOMENDACIONES -->
+<section class="panel" id="panel-recomendaciones">
+  <label class="interruptor"><input type="checkbox" data-campo="recomendaciones.mostrar"> Incluir esta sección</label>
+  <label>Título <input type="text" data-campo="recomendaciones.titulo"></label>
+  <h2>Contenido</h2>
+  <textarea data-rico="recomendaciones.html"></textarea>
+</section>
+
+<!-- ============================================================ ACOMPAÑAMIENTO -->
+<section class="panel" id="panel-acompanamiento">
+  <label class="interruptor"><input type="checkbox" data-campo="acompanamiento.mostrar"> Incluir esta sección</label>
+  <label class="interruptor"><input type="checkbox" data-campo="acompanamiento.salto"> Empezar en hoja nueva</label>
+  <label>Título <input type="text" data-campo="acompanamiento.titulo"></label>
+
+  <h2>Mapa de zonas</h2>
+  <label class="interruptor"><input type="checkbox" data-campo="acompanamiento.mostrar_mapa"> Mostrar el mapa</label>
+  <div class="imagen" data-imagen="acompanamiento.mapa">
+    <div class="imagen-vista">Mapa de la plantilla</div>
+    <div class="imagen-botones">
+      <button type="button" class="elegir">Cambiar mapa…</button>
+      <button type="button" class="quitar secundario">Usar el de la plantilla</button>
+    </div>
+  </div>
+
+  <h2>Docentes y zonas</h2>
+  <table class="lista" id="docentes">
+    <thead><tr><th>Docente</th><th class="zona">Zona</th><th></th></tr></thead>
+    <tbody></tbody>
+  </table>
+  <div class="botones">
+    <button type="button" id="docente-nuevo">+ Agregar docente</button>
+    <button type="button" id="zonas-limpiar" class="secundario">Borrar zonas</button>
+    <button type="button" id="zonas-rotar" class="secundario" title="Cada docente pasa a la zona del siguiente">Rotar zonas ↓</button>
+  </div>
+
+  <h2>Notas</h2>
+  <textarea data-rico="acompanamiento.notas_html"></textarea>
+</section>
+
+<!-- ============================================================ AGENDA -->
+<section class="panel" id="panel-agenda">
+  <label class="interruptor"><input type="checkbox" data-campo="agenda.salto"> Empezar en hoja nueva</label>
+  <label class="interruptor"><input type="checkbox" data-campo="agenda.mostrar_fechas"> Escribir la fecha junto a cada día</label>
+  <label>Título <input type="text" data-campo="agenda.titulo"></label>
+  <p class="ayuda">Cada tarjeta crece con su contenido. Si no cabe en la hoja, continúa en la siguiente.</p>
+  <div id="dias"></div>
+</section>
+
+<!-- ============================================================ EXTRAS -->
+<section class="panel" id="panel-extras">
+  <p class="ayuda">Secciones libres que se agregan después de la agenda (circulares, cronogramas, cumpleaños…).</p>
+  <div id="extras"></div>
+  <div class="botones"><button type="button" id="extra-nuevo">+ Agregar sección</button></div>
+</section>
+
+</main>
+
+<input type="file" id="selector-imagen" accept="image/*" hidden>
+
+<script src="suneditor.min.js"></script>
+<script src="es.js"></script>
+<script src="formulario.js"></script>
+</body>
+</html>

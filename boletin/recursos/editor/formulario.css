@@ -1,0 +1,110 @@
+:root {
+  --azul: #0d3b7c;
+  --azul-claro: #e8f0fa;
+  --naranja: #f29f05;
+  --verde: #1a7224;
+  --borde: #cfd6df;
+  --texto: #1c2733;
+  --suave: #5d6b7a;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; overflow-x: hidden; }
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  font-size: 14px; color: var(--texto); background: #f4f6f9;
+}
+
+/* ---------------------------------------------------------------- pestañas */
+#pestanas {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; flex-wrap: wrap; gap: 4px;
+  padding: 8px 10px; background: var(--azul);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .25);
+}
+#pestanas button {
+  border: 0; border-radius: 14px; padding: 6px 12px;
+  font: inherit; font-size: 13px; color: #fff; background: rgba(255, 255, 255, .14); cursor: pointer;
+}
+#pestanas button:hover { background: rgba(255, 255, 255, .28); }
+#pestanas button.activa { background: var(--naranja); font-weight: 600; }
+
+main { padding: 14px 16px 60px; }
+.panel { display: none; }
+.panel.activa { display: block; }
+
+h2 {
+  margin: 22px 0 10px; padding-bottom: 4px;
+  font-size: 15px; color: var(--azul);
+  border-bottom: 2px solid var(--naranja);
+}
+.panel > h2:first-child { margin-top: 4px; }
+
+/* ---------------------------------------------------------------- campos */
+label { display: block; margin: 0 0 10px; font-weight: 600; font-size: 13px; }
+label small, .ayuda { display: block; margin-top: 3px; font-weight: 400; font-size: 12px; color: var(--suave); }
+.ayuda { margin: 4px 0 12px; }
+input[type=text], input[type=date], input[type=number], select {
+  display: block; width: 100%; margin-top: 4px; padding: 7px 9px;
+  font: inherit; font-weight: 400; color: var(--texto);
+  background: #fff; border: 1px solid var(--borde); border-radius: 6px;
+}
+input:focus, select:focus { outline: 2px solid #7fb0ea; outline-offset: 0; border-color: #7fb0ea; }
+input.corto { max-width: 130px; }
+.fila { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.interruptor { display: flex; align-items: center; gap: 8px; font-weight: 500; cursor: pointer; }
+.interruptor input { width: 16px; height: 16px; margin: 0; accent-color: var(--verde); }
+.oculto { display: none !important; }
+
+button {
+  font: inherit; font-size: 13px; cursor: pointer;
+  padding: 7px 12px; border-radius: 6px;
+  border: 1px solid var(--azul); background: var(--azul); color: #fff;
+}
+button:hover { filter: brightness(1.12); }
+button.secundario { background: #fff; color: var(--azul); }
+button.icono { padding: 3px 8px; border-color: var(--borde); background: #fff; color: #a32020; }
+.botones { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+
+/* ---------------------------------------------------------------- imágenes */
+.imagen { display: flex; gap: 12px; align-items: center; margin-bottom: 10px; }
+.imagen-vista {
+  width: 170px; height: 110px; flex: none;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  font-size: 12px; color: var(--suave);
+  background: #fff center/contain no-repeat; border: 1px dashed var(--borde); border-radius: 8px;
+}
+.imagen-vista.llena { color: transparent; border-style: solid; }
+.imagen-botones { display: flex; flex-direction: column; gap: 6px; }
+
+/* ---------------------------------------------------------------- lista de docentes */
+table.lista { width: 100%; border-collapse: collapse; }
+table.lista th { text-align: left; font-size: 12px; color: var(--suave); padding: 2px 4px; }
+table.lista td { padding: 2px 3px; }
+table.lista input { margin: 0; padding: 5px 7px; }
+table.lista .zona { width: 70px; }
+table.lista td:last-child { width: 34px; }
+
+/* ---------------------------------------------------------------- tarjetas de día y extras */
+.tarjeta {
+  margin: 0 0 14px; background: #fff;
+  border: 1px solid var(--borde); border-left: 6px solid var(--c, var(--azul)); border-radius: 8px;
+}
+.tarjeta-cab {
+  display: flex; align-items: center; gap: 10px; padding: 8px 10px;
+  background: color-mix(in srgb, var(--c, var(--azul)) 10%, #fff);
+  border-radius: 0 8px 0 0;
+}
+.tarjeta-cab input[type=text] { margin: 0; font-weight: 600; flex: 1; }
+.tarjeta-cab .interruptor { margin: 0; white-space: nowrap; font-size: 12px; }
+.tarjeta-cuerpo { padding: 8px 10px 10px; }
+.tarjeta.apagada .tarjeta-cuerpo { display: none; }
+.tarjeta.apagada { opacity: .7; }
+
+/* ---------------------------------------------------------------- editor */
+.sun-editor { border-color: var(--borde) !important; border-radius: 6px; font-family: inherit; }
+.sun-editor .se-toolbar { outline: none; border-bottom: 1px solid var(--borde); border-radius: 6px 6px 0 0; background: #f7f9fc; }
+.sun-editor .se-wrapper { border-radius: 0 0 6px 6px; }
+.sun-editor-editable { font-family: Arial, Helvetica, sans-serif !important; font-size: 12pt !important; line-height: 1.28 !important; padding: 8px 12px !important; }
+.sun-editor-editable p { margin: 0 0 6px; }
+.sun-editor-editable table { width: 100%; }
+.sun-editor .se-resizing-bar { display: none; }
