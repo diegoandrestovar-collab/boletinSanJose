@@ -1,0 +1,89 @@
+name: Compilar ejecutables
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  compilar:
+    name: ${{ matrix.nombre }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            nombre: Windows
+            paquete: Boletin_Institucional_Windows.zip
+          - os: macos-latest
+            nombre: macOS-Apple
+            paquete: Boletin_Institucional_macOS_Apple.zip
+          - os: macos-15-intel
+            nombre: macOS-Intel
+            paquete: Boletin_Institucional_macOS_Intel.zip
+          - os: ubuntu-22.04
+            nombre: Linux
+            paquete: Boletin_Institucional_Linux.tar.gz
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements*.txt
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-compilar.txt
+
+      - name: Librerías del sistema (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libegl1 libxkbcommon-x11-0 libxcb-cursor0 libxcb-icccm4 \
+            libxcb-keysyms1 libxcb-shape0 libnss3 libxcomposite1 libxdamage1 libxrandr2 \
+            libxtst6 libasound2 libgbm1 fonts-liberation
+
+      - name: Compilar
+        run: pyinstaller --noconfirm --clean empaquetado/boletin.spec
+
+      - name: Empaquetar (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: Compress-Archive -Path dist/BoletinInstitucional -DestinationPath ${{ matrix.paquete }}
+
+      - name: Empaquetar (macOS)
+        if: runner.os == 'macOS'
+        run: ditto -c -k --keepParent "dist/Boletín Institucional.app" ${{ matrix.paquete }}
+
+      - name: Empaquetar (Linux)
+        if: runner.os == 'Linux'
+        run: tar -czf ${{ matrix.paquete }} -C dist BoletinInstitucional
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.nombre }}
+          path: ${{ matrix.paquete }}
+          retention-days: 30
+
+  publicar:
+    name: Publicar versión
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: compilar
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: paquetes
+          merge-multiple: true
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: paquetes/*
+          generate_release_notes: true
