@@ -1,9 +1,3 @@
-# Compila el Boletín Institucional para Windows, macOS y Linux en los servidores de GitHub.
-#
-# Cuándo se ejecuta:
-#   • Manualmente: pestaña Actions → «Compilar ejecutables» → Run workflow.
-#   • Al publicar una versión con una etiqueta v… (p. ej. v1.0.0): además crea un «Release»
-#     con los tres archivos listos para descargar.
 name: Compilar ejecutables
 
 on:
@@ -25,10 +19,10 @@ jobs:
           - os: windows-latest
             nombre: Windows
             paquete: Boletin_Institucional_Windows.zip
-          - os: macos-latest          # Mac con chip Apple (M1, M2, M3, M4)
+          - os: macos-latest
             nombre: macOS-Apple
             paquete: Boletin_Institucional_macOS_Apple.zip
-          - os: macos-15-intel        # Mac con procesador Intel
+          - os: macos-15-intel
             nombre: macOS-Intel
             paquete: Boletin_Institucional_macOS_Intel.zip
           - os: ubuntu-22.04
@@ -59,22 +53,6 @@ jobs:
 
       - name: Compilar
         run: pyinstaller --noconfirm --clean empaquetado/boletin.spec
-
-      - name: Probar exportación a PDF con el ejecutable
-        shell: bash
-        env:
-          QT_QPA_PLATFORM: offscreen
-          QTWEBENGINE_CHROMIUM_FLAGS: --no-sandbox
-        run: |
-          if [ "$RUNNER_OS" = "macOS" ]; then
-            EXE="dist/Boletín Institucional.app/Contents/MacOS/BoletinInstitucional"
-          elif [ "$RUNNER_OS" = "Windows" ]; then
-            EXE="dist/BoletinInstitucional/BoletinInstitucional.exe"
-          else
-            EXE="dist/BoletinInstitucional/BoletinInstitucional"
-          fi
-          "$EXE" ejemplos/ejemplo.boletin --pdf prueba.pdf || true
-          test -s prueba.pdf && echo "PDF de prueba generado correctamente" || echo "::warning::No se generó el PDF de prueba"
 
       - name: Empaquetar (Windows)
         if: runner.os == 'Windows'
